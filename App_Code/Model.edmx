@@ -1,0 +1,1173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ASPBOOTSTRAP3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="companies">
+          <Key>
+            <PropertyRef Name="adcoid" />
+          </Key>
+          <Property Name="adcoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="company" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="brandid" Type="int" />
+          <Property Name="type" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ASPBOOTSTRAP3.dbo.ForgotPassRequests' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ForgotPassRequests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar(max)" Nullable="false" />
+          <Property Name="Uid" Type="int" />
+          <Property Name="RequestDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblBrands">
+          <Key>
+            <PropertyRef Name="BrandID" />
+          </Key>
+          <Property Name="BrandID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblCategories">
+          <Key>
+            <PropertyRef Name="CatID" />
+          </Key>
+          <Property Name="CatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatName" Type="nvarchar(max)" />
+          <Property Name="BrandID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblGender">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblProductImages">
+          <Key>
+            <PropertyRef Name="PIMGID" />
+          </Key>
+          <Property Name="PIMGID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PID" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Extention" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblProducts">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PName" Type="nvarchar(max)" />
+          <Property Name="PPrice" Type="money" />
+          <Property Name="PSelPrice" Type="money" />
+          <Property Name="PBrandID" Type="int" />
+          <Property Name="PCategoryID" Type="int" />
+          <Property Name="PSubCatID" Type="int" />
+          <Property Name="PGender" Type="int" />
+          <Property Name="PDescription" Type="nvarchar(max)" />
+          <Property Name="PProductDetails" Type="nvarchar(max)" />
+          <Property Name="PMaterialCare" Type="nvarchar(max)" />
+          <Property Name="FreeDelivery" Type="int" />
+          <Property Name="30DayRet" Type="int" />
+          <Property Name="COD" Type="int" />
+        </EntityType>
+        <EntityType Name="tblProductSizeQuantity">
+          <Key>
+            <PropertyRef Name="PrdSizeQuantID" />
+          </Key>
+          <Property Name="PrdSizeQuantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PID" Type="int" />
+          <Property Name="SizeID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPurchase">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="PIDSizeID" Type="nvarchar(max)" />
+          <Property Name="CartAmount" Type="money" />
+          <Property Name="CartDiscount" Type="money" />
+          <Property Name="TotalPayed" Type="money" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaymentStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfPurchase" Type="datetime" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="PinCode" Type="int" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblrating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="review" Type="varchar(max)" />
+          <Property Name="PID" Type="int" />
+          <Property Name="Uid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSizes">
+          <Key>
+            <PropertyRef Name="SizeID" />
+          </Key>
+          <Property Name="SizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SizeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BrandID" Type="int" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="SubCategoryID" Type="int" />
+          <Property Name="GenderID" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSubCategories">
+          <Key>
+            <PropertyRef Name="SubCatID" />
+          </Key>
+          <Property Name="SubCatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubCatName" Type="nvarchar(max)" />
+          <Property Name="MainCatID" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="Uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Usertype" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name=" FK_ForgotPassRequests_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ForgotPassRequests" Type="Self.ForgotPassRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="ForgotPassRequests">
+              <PropertyRef Name="Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name=" FK_tblProductImages_ToTable">
+          <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProductImages" Type="Self.tblProductImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducts">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="tblProductImages">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name=" FK_tblProducts_ToTable">
+          <End Role="tblBrands" Type="Self.tblBrands" Multiplicity="0..1" />
+          <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrands">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="tblProducts">
+              <PropertyRef Name="PBrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name=" FK_tblProducts_ToTable_1">
+          <End Role="tblCategories" Type="Self.tblCategories" Multiplicity="0..1" />
+          <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategories">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="tblProducts">
+              <PropertyRef Name="PCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name=" FK_tblProducts_ToTable_2">
+          <End Role="tblSubCategories" Type="Self.tblSubCategories" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSubCategories">
+              <PropertyRef Name="SubCatID" />
+            </Principal>
+            <Dependent Role="tblProducts">
+              <PropertyRef Name="PSubCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name=" FK_tblProducts_ToTable_3">
+          <End Role="tblGender" Type="Self.tblGender" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="tblProducts">
+              <PropertyRef Name="PGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name=" FK_tblProductSizeQuantity_ToTable">
+          <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProductSizeQuantity" Type="Self.tblProductSizeQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducts">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="tblProductSizeQuantity">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name=" FK_tblProductSizeQuantity_ToTable_1">
+          <End Role="tblSizes" Type="Self.tblSizes" Multiplicity="0..1" />
+          <End Role="tblProductSizeQuantity" Type="Self.tblProductSizeQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSizes">
+              <PropertyRef Name="SizeID" />
+            </Principal>
+            <Dependent Role="tblProductSizeQuantity">
+              <PropertyRef Name="SizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name=" FK_tblSizes_ToBrand">
+          <End Role="tblBrands" Type="Self.tblBrands" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblSizes" Type="Self.tblSizes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrands">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="tblSizes">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name=" FK_tblSizes_ToCat">
+          <End Role="tblCategories" Type="Self.tblCategories" Multiplicity="0..1" />
+          <End Role="tblSizes" Type="Self.tblSizes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategories">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="tblSizes">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name=" FK_tblSizes_ToGender">
+          <End Role="tblGender" Type="Self.tblGender" Multiplicity="0..1" />
+          <End Role="tblSizes" Type="Self.tblSizes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="tblSizes">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name=" FK_tblSizes_ToSubCat">
+          <End Role="tblSubCategories" Type="Self.tblSubCategories" Multiplicity="0..1" />
+          <End Role="tblSizes" Type="Self.tblSizes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSubCategories">
+              <PropertyRef Name="SubCatID" />
+            </Principal>
+            <Dependent Role="tblSizes">
+              <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name=" FK_tblSubCategories_Cat">
+          <End Role="tblCategories" Type="Self.tblCategories" Multiplicity="0..1" />
+          <End Role="tblSubCategories" Type="Self.tblSubCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategories">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="tblSubCategories">
+              <PropertyRef Name="MainCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_companies_tblBrands">
+          <End Role="tblBrands" Type="Self.tblBrands" Multiplicity="0..1" />
+          <End Role="companies" Type="Self.companies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrands">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="companies">
+              <PropertyRef Name="brandid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCategories_tblBrands">
+          <End Role="tblBrands" Type="Self.tblBrands" Multiplicity="0..1" />
+          <End Role="tblCategories" Type="Self.tblCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrands">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="tblCategories">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPurchase_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="tblPurchase" Type="Self.tblPurchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="tblPurchase">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblrating_tblProducts">
+          <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblrating" Type="Self.tblrating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducts">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="tblrating">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblrating_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="tblrating" Type="Self.tblrating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="tblrating">
+              <PropertyRef Name="Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ASPBOOTSTRAP3ModelStoreContainer">
+          <EntitySet Name="companies" EntityType="Self.companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBrands" EntityType="Self.tblBrands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCategories" EntityType="Self.tblCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGender" EntityType="Self.tblGender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProductImages" EntityType="Self.tblProductImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProducts" EntityType="Self.tblProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProductSizeQuantity" EntityType="Self.tblProductSizeQuantity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPurchase" EntityType="Self.tblPurchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblrating" EntityType="Self.tblrating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSizes" EntityType="Self.tblSizes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSubCategories" EntityType="Self.tblSubCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForgotPassRequests" EntityType="Self.ForgotPassRequests" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ForgotPassRequests].[Id] AS [Id], 
+    [ForgotPassRequests].[Uid] AS [Uid], 
+    [ForgotPassRequests].[RequestDateTime] AS [RequestDateTime]
+    FROM [dbo].[ForgotPassRequests] AS [ForgotPassRequests]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name=" FK_ForgotPassRequests_Users" Association="Self. FK_ForgotPassRequests_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ForgotPassRequests" EntitySet="ForgotPassRequests" />
+          </AssociationSet>
+          <AssociationSet Name=" FK_tblProductImages_ToTable" Association="Self. FK_tblProductImages_ToTable">
+            <End Role="tblProducts" EntitySet="tblProducts" />
+            <End Role="tblProductImages" EntitySet="tblProductImages" />
+          </AssociationSet>
+          <AssociationSet Name=" FK_tblProducts_ToTable" Association="Self. FK_tblProducts_ToTable">
+            <End Role="tblBrands" EntitySet="tblBrands" />
+            <End Role="tblProducts" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name=" FK_tblProducts_ToTable_1" Association="Self. FK_tblProducts_ToTable_1">
+            <End Role="tblCategories" EntitySet="tblCategories" />
+            <End Role="tblProducts" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name=" FK_tblProducts_ToTable_2" Association="Self. FK_tblProducts_ToTable_2">
+            <End Role="tblSubCategories" EntitySet="tblSubCategories" />
+            <End Role="tblProducts" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name=" FK_tblProducts_ToTable_3" Association="Self. FK_tblProducts_ToTable_3">
+            <End Role="tblGender" EntitySet="tblGender" />
+            <End Role="tblProducts" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name=" FK_tblProductSizeQuantity_ToTable" Association="Self. FK_tblProductSizeQuantity_ToTable">
+            <End Role="tblProducts" EntitySet="tblProducts" />
+            <End Role="tblProductSizeQuantity" EntitySet="tblProductSizeQuantity" />
+          </AssociationSet>
+          <AssociationSet Name=" FK_tblProductSizeQuantity_ToTable_1" Association="Self. FK_tblProductSizeQuantity_ToTable_1">
+            <End Role="tblSizes" EntitySet="tblSizes" />
+            <End Role="tblProductSizeQuantity" EntitySet="tblProductSizeQuantity" />
+          </AssociationSet>
+          <AssociationSet Name=" FK_tblSizes_ToBrand" Association="Self. FK_tblSizes_ToBrand">
+            <End Role="tblBrands" EntitySet="tblBrands" />
+            <End Role="tblSizes" EntitySet="tblSizes" />
+          </AssociationSet>
+          <AssociationSet Name=" FK_tblSizes_ToCat" Association="Self. FK_tblSizes_ToCat">
+            <End Role="tblCategories" EntitySet="tblCategories" />
+            <End Role="tblSizes" EntitySet="tblSizes" />
+          </AssociationSet>
+          <AssociationSet Name=" FK_tblSizes_ToGender" Association="Self. FK_tblSizes_ToGender">
+            <End Role="tblGender" EntitySet="tblGender" />
+            <End Role="tblSizes" EntitySet="tblSizes" />
+          </AssociationSet>
+          <AssociationSet Name=" FK_tblSizes_ToSubCat" Association="Self. FK_tblSizes_ToSubCat">
+            <End Role="tblSubCategories" EntitySet="tblSubCategories" />
+            <End Role="tblSizes" EntitySet="tblSizes" />
+          </AssociationSet>
+          <AssociationSet Name=" FK_tblSubCategories_Cat" Association="Self. FK_tblSubCategories_Cat">
+            <End Role="tblCategories" EntitySet="tblCategories" />
+            <End Role="tblSubCategories" EntitySet="tblSubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_companies_tblBrands" Association="Self.FK_companies_tblBrands">
+            <End Role="tblBrands" EntitySet="tblBrands" />
+            <End Role="companies" EntitySet="companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCategories_tblBrands" Association="Self.FK_tblCategories_tblBrands">
+            <End Role="tblBrands" EntitySet="tblBrands" />
+            <End Role="tblCategories" EntitySet="tblCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPurchase_Users" Association="Self.FK_tblPurchase_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="tblPurchase" EntitySet="tblPurchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblrating_tblProducts" Association="Self.FK_tblrating_tblProducts">
+            <End Role="tblProducts" EntitySet="tblProducts" />
+            <End Role="tblrating" EntitySet="tblrating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblrating_Users" Association="Self.FK_tblrating_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="tblrating" EntitySet="tblrating" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ASPBOOTSTRAP3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="adcoid" />
+          </Key>
+          <Property Name="adcoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="company1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="brandid" Type="Int32" />
+          <Property Name="type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tblBrand" Relationship="Self.FK_companies_tblBrands" FromRole="companies" ToRole="tblBrands" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblBrand">
+          <Key>
+            <PropertyRef Name="BrandID" />
+          </Key>
+          <Property Name="BrandID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="companies" Relationship="Self.FK_companies_tblBrands" FromRole="tblBrands" ToRole="companies" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.C_FK_tblProducts_ToTable" FromRole="tblBrands" ToRole="tblProducts" />
+          <NavigationProperty Name="tblSizes" Relationship="Self.C_FK_tblSizes_ToBrand" FromRole="tblBrands" ToRole="tblSizes" />
+          <NavigationProperty Name="tblCategories" Relationship="Self.FK_tblCategories_tblBrands" FromRole="tblBrands" ToRole="tblCategories" />
+        </EntityType>
+        <EntityType Name="tblCategory">
+          <Key>
+            <PropertyRef Name="CatID" />
+          </Key>
+          <Property Name="CatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BrandID" Type="Int32" />
+          <NavigationProperty Name="tblBrand" Relationship="Self.FK_tblCategories_tblBrands" FromRole="tblCategories" ToRole="tblBrands" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.C_FK_tblProducts_ToTable_1" FromRole="tblCategories" ToRole="tblProducts" />
+          <NavigationProperty Name="tblSizes" Relationship="Self.C_FK_tblSizes_ToCat" FromRole="tblCategories" ToRole="tblSizes" />
+          <NavigationProperty Name="tblSubCategories" Relationship="Self.C_FK_tblSubCategories_Cat" FromRole="tblCategories" ToRole="tblSubCategories" />
+        </EntityType>
+        <EntityType Name="tblGender">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.C_FK_tblProducts_ToTable_3" FromRole="tblGender" ToRole="tblProducts" />
+          <NavigationProperty Name="tblSizes" Relationship="Self.C_FK_tblSizes_ToGender" FromRole="tblGender" ToRole="tblSizes" />
+        </EntityType>
+        <EntityType Name="tblProductImage">
+          <Key>
+            <PropertyRef Name="PIMGID" />
+          </Key>
+          <Property Name="PIMGID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Extention" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblProduct" Relationship="Self.C_FK_tblProductImages_ToTable" FromRole="tblProductImages" ToRole="tblProducts" />
+        </EntityType>
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PSelPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PBrandID" Type="Int32" />
+          <Property Name="PCategoryID" Type="Int32" />
+          <Property Name="PSubCatID" Type="Int32" />
+          <Property Name="PGender" Type="Int32" />
+          <Property Name="PDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PProductDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PMaterialCare" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FreeDelivery" Type="Int32" />
+          <Property Name="C30DayRet" Type="Int32" />
+          <Property Name="COD" Type="Int32" />
+          <NavigationProperty Name="tblBrand" Relationship="Self.C_FK_tblProducts_ToTable" FromRole="tblProducts" ToRole="tblBrands" />
+          <NavigationProperty Name="tblCategory" Relationship="Self.C_FK_tblProducts_ToTable_1" FromRole="tblProducts" ToRole="tblCategories" />
+          <NavigationProperty Name="tblGender" Relationship="Self.C_FK_tblProducts_ToTable_3" FromRole="tblProducts" ToRole="tblGender" />
+          <NavigationProperty Name="tblProductImages" Relationship="Self.C_FK_tblProductImages_ToTable" FromRole="tblProducts" ToRole="tblProductImages" />
+          <NavigationProperty Name="tblSubCategory" Relationship="Self.C_FK_tblProducts_ToTable_2" FromRole="tblProducts" ToRole="tblSubCategories" />
+          <NavigationProperty Name="tblProductSizeQuantities" Relationship="Self.C_FK_tblProductSizeQuantity_ToTable" FromRole="tblProducts" ToRole="tblProductSizeQuantity" />
+          <NavigationProperty Name="tblratings" Relationship="Self.FK_tblrating_tblProducts" FromRole="tblProducts" ToRole="tblrating" />
+        </EntityType>
+        <EntityType Name="tblProductSizeQuantity">
+          <Key>
+            <PropertyRef Name="PrdSizeQuantID" />
+          </Key>
+          <Property Name="PrdSizeQuantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PID" Type="Int32" />
+          <Property Name="SizeID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="tblProduct" Relationship="Self.C_FK_tblProductSizeQuantity_ToTable" FromRole="tblProductSizeQuantity" ToRole="tblProducts" />
+          <NavigationProperty Name="tblSize" Relationship="Self.C_FK_tblProductSizeQuantity_ToTable_1" FromRole="tblProductSizeQuantity" ToRole="tblSizes" />
+        </EntityType>
+        <EntityType Name="tblPurchase">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PIDSizeID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CartAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CartDiscount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TotalPayed" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfPurchase" Type="DateTime" Precision="3" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PinCode" Type="Int32" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_tblPurchase_Users" FromRole="tblPurchase" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="tblrating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="review" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PID" Type="Int32" />
+          <Property Name="Uid" Type="Int32" />
+          <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblrating_tblProducts" FromRole="tblrating" ToRole="tblProducts" />
+          <NavigationProperty Name="User" Relationship="Self.FK_tblrating_Users" FromRole="tblrating" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="tblSize">
+          <Key>
+            <PropertyRef Name="SizeID" />
+          </Key>
+          <Property Name="SizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SizeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BrandID" Type="Int32" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="SubCategoryID" Type="Int32" />
+          <Property Name="GenderID" Type="Int32" />
+          <NavigationProperty Name="tblBrand" Relationship="Self.C_FK_tblSizes_ToBrand" FromRole="tblSizes" ToRole="tblBrands" />
+          <NavigationProperty Name="tblCategory" Relationship="Self.C_FK_tblSizes_ToCat" FromRole="tblSizes" ToRole="tblCategories" />
+          <NavigationProperty Name="tblGender" Relationship="Self.C_FK_tblSizes_ToGender" FromRole="tblSizes" ToRole="tblGender" />
+          <NavigationProperty Name="tblProductSizeQuantities" Relationship="Self.C_FK_tblProductSizeQuantity_ToTable_1" FromRole="tblSizes" ToRole="tblProductSizeQuantity" />
+          <NavigationProperty Name="tblSubCategory" Relationship="Self.C_FK_tblSizes_ToSubCat" FromRole="tblSizes" ToRole="tblSubCategories" />
+        </EntityType>
+        <EntityType Name="tblSubCategory">
+          <Key>
+            <PropertyRef Name="SubCatID" />
+          </Key>
+          <Property Name="SubCatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubCatName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MainCatID" Type="Int32" />
+          <NavigationProperty Name="tblCategory" Relationship="Self.C_FK_tblSubCategories_Cat" FromRole="tblSubCategories" ToRole="tblCategories" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.C_FK_tblProducts_ToTable_2" FromRole="tblSubCategories" ToRole="tblProducts" />
+          <NavigationProperty Name="tblSizes" Relationship="Self.C_FK_tblSizes_ToSubCat" FromRole="tblSubCategories" ToRole="tblSizes" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Uid" />
+          </Key>
+          <Property Name="Uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Usertype" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tblPurchases" Relationship="Self.FK_tblPurchase_Users" FromRole="Users" ToRole="tblPurchase" />
+          <NavigationProperty Name="tblratings" Relationship="Self.FK_tblrating_Users" FromRole="Users" ToRole="tblrating" />
+          <NavigationProperty Name="ForgotPassRequests" Relationship="Self.C_FK_ForgotPassRequests_Users" FromRole="Users" ToRole="ForgotPassRequests" />
+        </EntityType>
+        <EntityType Name="ForgotPassRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Uid" Type="Int32" />
+          <Property Name="RequestDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.C_FK_ForgotPassRequests_Users" FromRole="ForgotPassRequests" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_companies_tblBrands">
+          <End Role="tblBrands" Type="Self.tblBrand" Multiplicity="0..1" />
+          <End Role="companies" Type="Self.company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrands">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="companies">
+              <PropertyRef Name="brandid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_tblProducts_ToTable">
+          <End Role="tblBrands" Type="Self.tblBrand" Multiplicity="0..1" />
+          <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrands">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="tblProducts">
+              <PropertyRef Name="PBrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_tblSizes_ToBrand">
+          <End Role="tblBrands" Type="Self.tblBrand" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblSizes" Type="Self.tblSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrands">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="tblSizes">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCategories_tblBrands">
+          <End Role="tblBrands" Type="Self.tblBrand" Multiplicity="0..1" />
+          <End Role="tblCategories" Type="Self.tblCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrands">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="tblCategories">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_tblProducts_ToTable_1">
+          <End Role="tblCategories" Type="Self.tblCategory" Multiplicity="0..1" />
+          <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategories">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="tblProducts">
+              <PropertyRef Name="PCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_tblSizes_ToCat">
+          <End Role="tblCategories" Type="Self.tblCategory" Multiplicity="0..1" />
+          <End Role="tblSizes" Type="Self.tblSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategories">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="tblSizes">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_tblSubCategories_Cat">
+          <End Role="tblCategories" Type="Self.tblCategory" Multiplicity="0..1" />
+          <End Role="tblSubCategories" Type="Self.tblSubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategories">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="tblSubCategories">
+              <PropertyRef Name="MainCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_tblProducts_ToTable_3">
+          <End Role="tblGender" Type="Self.tblGender" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="tblProducts">
+              <PropertyRef Name="PGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_tblSizes_ToGender">
+          <End Role="tblGender" Type="Self.tblGender" Multiplicity="0..1" />
+          <End Role="tblSizes" Type="Self.tblSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="tblSizes">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_tblProductImages_ToTable">
+          <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProductImages" Type="Self.tblProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducts">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="tblProductImages">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_tblProducts_ToTable_2">
+          <End Role="tblSubCategories" Type="Self.tblSubCategory" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSubCategories">
+              <PropertyRef Name="SubCatID" />
+            </Principal>
+            <Dependent Role="tblProducts">
+              <PropertyRef Name="PSubCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_tblProductSizeQuantity_ToTable">
+          <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblProductSizeQuantity" Type="Self.tblProductSizeQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducts">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="tblProductSizeQuantity">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblrating_tblProducts">
+          <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblrating" Type="Self.tblrating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducts">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="tblrating">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_tblProductSizeQuantity_ToTable_1">
+          <End Role="tblSizes" Type="Self.tblSize" Multiplicity="0..1" />
+          <End Role="tblProductSizeQuantity" Type="Self.tblProductSizeQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSizes">
+              <PropertyRef Name="SizeID" />
+            </Principal>
+            <Dependent Role="tblProductSizeQuantity">
+              <PropertyRef Name="SizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPurchase_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="tblPurchase" Type="Self.tblPurchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="tblPurchase">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblrating_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="tblrating" Type="Self.tblrating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="tblrating">
+              <PropertyRef Name="Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_tblSizes_ToSubCat">
+          <End Role="tblSubCategories" Type="Self.tblSubCategory" Multiplicity="0..1" />
+          <End Role="tblSizes" Type="Self.tblSize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSubCategories">
+              <PropertyRef Name="SubCatID" />
+            </Principal>
+            <Dependent Role="tblSizes">
+              <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="C_FK_ForgotPassRequests_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ForgotPassRequests" Type="Self.ForgotPassRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Uid" />
+            </Principal>
+            <Dependent Role="ForgotPassRequests">
+              <PropertyRef Name="Uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ASPBOOTSTRAP3Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="companies" EntityType="Self.company" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tblBrands" EntityType="Self.tblBrand" />
+          <EntitySet Name="tblCategories" EntityType="Self.tblCategory" />
+          <EntitySet Name="tblGenders" EntityType="Self.tblGender" />
+          <EntitySet Name="tblProductImages" EntityType="Self.tblProductImage" />
+          <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+          <EntitySet Name="tblProductSizeQuantities" EntityType="Self.tblProductSizeQuantity" />
+          <EntitySet Name="tblPurchases" EntityType="Self.tblPurchase" />
+          <EntitySet Name="tblratings" EntityType="Self.tblrating" />
+          <EntitySet Name="tblSizes" EntityType="Self.tblSize" />
+          <EntitySet Name="tblSubCategories" EntityType="Self.tblSubCategory" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="ForgotPassRequests" EntityType="Self.ForgotPassRequest" />
+          <AssociationSet Name="FK_companies_tblBrands" Association="Self.FK_companies_tblBrands">
+            <End Role="tblBrands" EntitySet="tblBrands" />
+            <End Role="companies" EntitySet="companies" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_tblProducts_ToTable" Association="Self.C_FK_tblProducts_ToTable">
+            <End Role="tblBrands" EntitySet="tblBrands" />
+            <End Role="tblProducts" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_tblSizes_ToBrand" Association="Self.C_FK_tblSizes_ToBrand">
+            <End Role="tblBrands" EntitySet="tblBrands" />
+            <End Role="tblSizes" EntitySet="tblSizes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCategories_tblBrands" Association="Self.FK_tblCategories_tblBrands">
+            <End Role="tblBrands" EntitySet="tblBrands" />
+            <End Role="tblCategories" EntitySet="tblCategories" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_tblProducts_ToTable_1" Association="Self.C_FK_tblProducts_ToTable_1">
+            <End Role="tblCategories" EntitySet="tblCategories" />
+            <End Role="tblProducts" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_tblSizes_ToCat" Association="Self.C_FK_tblSizes_ToCat">
+            <End Role="tblCategories" EntitySet="tblCategories" />
+            <End Role="tblSizes" EntitySet="tblSizes" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_tblSubCategories_Cat" Association="Self.C_FK_tblSubCategories_Cat">
+            <End Role="tblCategories" EntitySet="tblCategories" />
+            <End Role="tblSubCategories" EntitySet="tblSubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_tblProducts_ToTable_3" Association="Self.C_FK_tblProducts_ToTable_3">
+            <End Role="tblGender" EntitySet="tblGenders" />
+            <End Role="tblProducts" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_tblSizes_ToGender" Association="Self.C_FK_tblSizes_ToGender">
+            <End Role="tblGender" EntitySet="tblGenders" />
+            <End Role="tblSizes" EntitySet="tblSizes" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_tblProductImages_ToTable" Association="Self.C_FK_tblProductImages_ToTable">
+            <End Role="tblProducts" EntitySet="tblProducts" />
+            <End Role="tblProductImages" EntitySet="tblProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_tblProducts_ToTable_2" Association="Self.C_FK_tblProducts_ToTable_2">
+            <End Role="tblSubCategories" EntitySet="tblSubCategories" />
+            <End Role="tblProducts" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_tblProductSizeQuantity_ToTable" Association="Self.C_FK_tblProductSizeQuantity_ToTable">
+            <End Role="tblProducts" EntitySet="tblProducts" />
+            <End Role="tblProductSizeQuantity" EntitySet="tblProductSizeQuantities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblrating_tblProducts" Association="Self.FK_tblrating_tblProducts">
+            <End Role="tblProducts" EntitySet="tblProducts" />
+            <End Role="tblrating" EntitySet="tblratings" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_tblProductSizeQuantity_ToTable_1" Association="Self.C_FK_tblProductSizeQuantity_ToTable_1">
+            <End Role="tblSizes" EntitySet="tblSizes" />
+            <End Role="tblProductSizeQuantity" EntitySet="tblProductSizeQuantities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPurchase_Users" Association="Self.FK_tblPurchase_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="tblPurchase" EntitySet="tblPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblrating_Users" Association="Self.FK_tblrating_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="tblrating" EntitySet="tblratings" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_tblSizes_ToSubCat" Association="Self.C_FK_tblSizes_ToSubCat">
+            <End Role="tblSubCategories" EntitySet="tblSubCategories" />
+            <End Role="tblSizes" EntitySet="tblSizes" />
+          </AssociationSet>
+          <AssociationSet Name="C_FK_ForgotPassRequests_Users" Association="Self.C_FK_ForgotPassRequests_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ForgotPassRequests" EntitySet="ForgotPassRequests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ASPBOOTSTRAP3ModelStoreContainer" CdmEntityContainer="ASPBOOTSTRAP3Entities">
+          <EntitySetMapping Name="companies">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.company">
+              <MappingFragment StoreEntitySet="companies">
+                <ScalarProperty Name="adcoid" ColumnName="adcoid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="company1" ColumnName="company" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="brandid" ColumnName="brandid" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBrands">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.tblBrand">
+              <MappingFragment StoreEntitySet="tblBrands">
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCategories">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.tblCategory">
+              <MappingFragment StoreEntitySet="tblCategories">
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGenders">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.tblGender">
+              <MappingFragment StoreEntitySet="tblGender">
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProductImages">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.tblProductImage">
+              <MappingFragment StoreEntitySet="tblProductImages">
+                <ScalarProperty Name="PIMGID" ColumnName="PIMGID" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Extention" ColumnName="Extention" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProducts">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.tblProduct">
+              <MappingFragment StoreEntitySet="tblProducts">
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="PName" ColumnName="PName" />
+                <ScalarProperty Name="PPrice" ColumnName="PPrice" />
+                <ScalarProperty Name="PSelPrice" ColumnName="PSelPrice" />
+                <ScalarProperty Name="PBrandID" ColumnName="PBrandID" />
+                <ScalarProperty Name="PCategoryID" ColumnName="PCategoryID" />
+                <ScalarProperty Name="PSubCatID" ColumnName="PSubCatID" />
+                <ScalarProperty Name="PGender" ColumnName="PGender" />
+                <ScalarProperty Name="PDescription" ColumnName="PDescription" />
+                <ScalarProperty Name="PProductDetails" ColumnName="PProductDetails" />
+                <ScalarProperty Name="PMaterialCare" ColumnName="PMaterialCare" />
+                <ScalarProperty Name="FreeDelivery" ColumnName="FreeDelivery" />
+                <ScalarProperty Name="C30DayRet" ColumnName="30DayRet" />
+                <ScalarProperty Name="COD" ColumnName="COD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProductSizeQuantities">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.tblProductSizeQuantity">
+              <MappingFragment StoreEntitySet="tblProductSizeQuantity">
+                <ScalarProperty Name="PrdSizeQuantID" ColumnName="PrdSizeQuantID" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPurchases">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.tblPurchase">
+              <MappingFragment StoreEntitySet="tblPurchase">
+                <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PIDSizeID" ColumnName="PIDSizeID" />
+                <ScalarProperty Name="CartAmount" ColumnName="CartAmount" />
+                <ScalarProperty Name="CartDiscount" ColumnName="CartDiscount" />
+                <ScalarProperty Name="TotalPayed" ColumnName="TotalPayed" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="DateOfPurchase" ColumnName="DateOfPurchase" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblratings">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.tblrating">
+              <MappingFragment StoreEntitySet="tblrating">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="review" ColumnName="review" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSizes">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.tblSize">
+              <MappingFragment StoreEntitySet="tblSizes">
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+                <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSubCategories">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.tblSubCategory">
+              <MappingFragment StoreEntitySet="tblSubCategories">
+                <ScalarProperty Name="SubCatID" ColumnName="SubCatID" />
+                <ScalarProperty Name="SubCatName" ColumnName="SubCatName" />
+                <ScalarProperty Name="MainCatID" ColumnName="MainCatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Usertype" ColumnName="Usertype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForgotPassRequests">
+            <EntityTypeMapping TypeName="ASPBOOTSTRAP3Model.ForgotPassRequest">
+              <MappingFragment StoreEntitySet="ForgotPassRequests">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Uid" ColumnName="Uid" />
+                <ScalarProperty Name="RequestDateTime" ColumnName="RequestDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

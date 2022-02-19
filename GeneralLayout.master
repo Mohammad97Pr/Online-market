@@ -1,0 +1,299 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="GeneralLayout.master.cs" Inherits="GeneralLayout" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Online Furat Shope</title>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    
+    <link href="css/Custom-Cs.css" rel="stylesheet" />
+    <link href="bootstrap-4.5.2-dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="bootstrap-4.5.2-dist/css/bootstrap-reboot.min.css" rel="stylesheet" />
+    <link href="datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="datatables/js/jquery.dataTables.min.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=AUD"></script>
+    <link href="bootstrap-4.5.2-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="bootstrap-4.5.2-dist/js/bootstrap.bundle.js"></script>
+    <script src="bootstrap-4.5.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-4.5.2-dist/js/bootstrap.js"></script>
+    <script src="bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <%--<nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="Default.aspx">
+                    <img alt="Logo" src="Images/tc only 512.png" height="30" />
+                    TechCybo.com
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="Default.aspx">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Products
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="Products.aspx">All Products</a>
+                                <div class="dropdown-divider"></div>
+
+                                <asp:Repeater ID="rptCategory" runat="server" OnItemDataBound="OnItemDataBound">
+                                    <ItemTemplate>
+                                        <a class="dropdown-item main-cat" href="Products.aspx?cat=<%# Eval("CatID") %>"><%# Eval("CatName") %></a>
+                                        <asp:HiddenField ID="hfCatId" runat="server" Value='<%# Eval("CatID") %>' />
+
+                                        <asp:Repeater ID="rptSubCategories" runat="server">
+                                            <ItemTemplate>
+                                                <a class="dropdown-item" href="Products.aspx?subcat=<%# Eval("SubCatID") %>"><%# Eval("SubCatName") %></a>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <div class="dropdown-divider"></div>
+                                            </FooterTemplate>
+                                        </asp:Repeater>
+
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="form-inline my-2 my-lg-0">
+                        <asp:TextBox runat="server" class="form-control mr-sm-2" ID="txtsearch" placeholder="Search" />
+                        <asp:Button runat="server"  ID="btnsearch" class="btn btn-outline-success my-2 my-sm-0" OnClick="btnsearch_Click" Text="Search" ></asp:Button>
+
+                        <button id="btnCart" class="btn btn-primary navbar-btn ml-2" type="button">
+                            Cart <span class="badge" id="pCount" runat="server"></span>
+                        </button>
+                    </div>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item" id="btnSignup" runat="server"><a class="nav-link" href="SignUp.aspx">Sign Up</a></li>
+                        <li class="nav-item" id="btnSignin" runat="server"><a class="nav-link" href="SignIn.aspx">Sign In</a></li>
+                        <li class="nav-item">
+                            <asp:Button ID="btnSignOut" runat="server" Class="btn btn-default nav-link" Text="Sign out" OnClick="btnSignOut_Click" />
+                        </li>
+                    </ul>
+                </div>
+            </nav>--%><%--background: #6441A5;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2a0845, #6441A5);  /* Chrome 10-25, Safari 5.1-6 */
+ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */--%>
+
+            <nav class="navbar  navbar-expand-lg navbar-light" style="background-color: #29539b; background-image: linear-gradient(315deg, #29539b 0%, #1e3b70 74%); font-family: 'Lucida Fax'; font-size: large;">
+                <a class="navbar-brand" href="#">
+                    <img src="photo/Annotation%202020-10-11%20113106.png" style="width: 60px; height: 80px;" />
+                    <span style="color: white; font-size: xx-large; font-family: 'Goudy Old Style';">Furat</span>           </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="Default.aspx"><span style="color: white;">Home </span></a>
+                        </li>
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span style="color: white;">AllProducts </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="Products.aspx">All Products</a>
+                                <div class="dropdown-divider"></div>
+
+                                <asp:Repeater ID="rptCategory" runat="server" OnItemDataBound="OnItemDataBound">
+                                    <ItemTemplate>
+                                        <a class="dropdown-item main-cat" style="color: blue;" href="Products.aspx?cat=<%# Eval("CatID") %>"><%# Eval("CatName") %></a>
+                                        <asp:HiddenField ID="hfCatId" runat="server" Value='<%# Eval("CatID") %>' />
+                                        <hr />
+                                        <%--               <asp:Repeater ID="rptSubCategories" runat="server">
+                                            <ItemTemplate>
+                                                <a class="dropdown-item" href="Products.aspx?subcat=<%# Eval("SubCatID") %>"><%# Eval("SubCatName") %></a>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <div class="dropdown-divider"></div>
+                                            </FooterTemplate>
+                                        </asp:Repeater>--%>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="form-inline my-1">
+
+                        <asp:TextBox runat="server" class="form-control" ID="txtsearch" placeholder="Search" Width="550px" />
+
+                        <asp:Button runat="server" ID="btnsearch" class="btn btn-outline-warning" OnClick="btnsearch_Click" Text="Search"></asp:Button>
+                    </div>
+
+                    <button id="btnCart" class="btn btn-primary navbar-btn ml-2" type="button">
+                        Cart <span class="badge" id="pCount" runat="server"></span>
+                    </button>
+
+                </div>
+
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" id="btnSignup" runat="server"><a class="nav-link" style="color: white; font-style: italic;" href="SignUp.aspx">Sign Up</a></li>
+                    <li class="nav-item" id="btnSignin" runat="server"><a class="nav-link" style="color: white; font-style: italic;" href="SignIn.aspx">Sign In</a></li>
+                    <li class="nav-item">
+                        <asp:Button ID="btnSignOut" runat="server" Class="btn btn-default nav-link" Text="Sign out" OnClick="btnSignOut_Click" />
+                    </li>
+                </ul>
+
+            </nav>
+            <br />
+
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <br />
+            <br />
+            <br />
+            <br />
+
+            <footer class="page-footer font-small mdb-color lighten-3 pt-4" style="background-color: #29539b; background-image: linear-gradient(315deg, #29539b 0%, #1e3b70 74%);">
+                <%--                style="background-color: #2a2a72; background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);--%>
+                <!-- Footer Links -->
+                <div class="container text-center text-md-left">
+
+                    <!-- Grid row -->
+                    <div class="row">
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+
+                            <!-- Content -->
+                            <h4 class="font-weight-bold text-uppercase mb-4" style="color: yellow;">About Us</h4>
+                            <p style="color: white; font-size: x-large;">Furat Online Market</p>
+                            <p style="color: white; font-size: large;">
+                                this market odders many good services, we hope that we will meet your expectations,<br />
+                                welcome everyone
+                            </p>
+                            <p style="color: white; font-size: large;">
+                                © Furat-Market, 2020
+                            </p>
+
+                        </div>
+                        <!-- Grid column -->
+
+
+                        <hr class="clearfix w-100 d-md-none" />
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+                            <!-- Contact details -->
+                            <h4 class="font-weight-bold text-uppercase mb-4" style="color: yellow;">Address</h4>
+
+                            <ul class="list-unstyled " style="font-size: large; color: white;">
+                                <li>
+                                    <p>
+                                        <i class="fas fa-home mr-3"></i>Damascus, Syria
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i class="fas fa-envelope mr-3"></i>collage@gmail.com
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>
+                                        <i class="fas fa-phone mr-3"></i>+963957363409
+                                    </p>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <!-- Grid column -->
+                        <div class="col-md-3  mx-auto my-md-4 my-0 mt-4 mb-1">
+                            <h3 style="color: yellow;">Support</h3>
+                            <div class="form-group">
+                                <label style="font-size: larger; color: white;">Join Your Company with us</label>
+                                <asp:LinkButton runat="server" ID="linkcompany" OnClick="linkcompany_Click" Text="Join" ForeColor="Yellow" Font-Underline="true" Font-Size="X-Large" CssClass="btn btn-link"></asp:LinkButton>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-size: larger; color: white;">You Have Account</label>&middot;&middot;
+                                <asp:LinkButton Text="SignIn" runat="server" OnClick="SignIn2_Click" ID="SignIn2" ForeColor="Yellow" Font-Underline="true" Font-Size="X-Large" CssClass="btn  btn-link"></asp:LinkButton>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-md-3  mx-auto my-md-4 my-0 mt-4 mb-1">
+                            <h3 style="color: yellow;">Contact Us</h3>
+                            <div class="form-group">
+                                <label style="font-size: larger; color: white;">Your Name</label>
+                                <asp:TextBox runat="server" ID="txt_fname" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-size: larger; color: white;">Your Email</label>
+                                <asp:TextBox runat="server" ID="TextBox2" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-size: larger; color: white;">Your Message</label>
+
+                                <asp:TextBox runat="server" ID="TextBox3" CssClass="form-control" TextMode="MultiLine" Rows="2">
+
+                                </asp:TextBox>
+                            </div>
+
+
+                            <br />
+                            <asp:Button runat="server" Text="Submit" ID="btn_sub" class="btn btn-warning btn-lg" OnClick="btn_sub_Click"></asp:Button>
+                            <asp:Label runat="server" ID="label1" ForeColor="White" Font-Size="X-Large" Text=""></asp:Label>
+                        </div>
+
+                    </div>
+                    <hr style="font-size: x-large;" />
+                    <div class="row">
+                        <div class="col-12 mx-auto">
+                            <center>
+                             </center>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mx-auto">
+                            <center>
+<%--                        <asp:LinkButton runat="server" ID="ll" Font-Size="X-Large" ForeColor="Wheat" Text="Admin login" OnClick="ll_Click"></asp:LinkButton>--%>
+                    </center>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </footer>
+        </div>
+    </form>
+    <script>
+        $(document).ready(function myfunction() {
+            $("#btnCart").click(function myfunction() {
+                window.location.href = "/Cart.aspx";
+            });
+        });
+    </script>
+
+</body>
+</html>
